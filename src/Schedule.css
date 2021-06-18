@@ -1,3 +1,7 @@
+html,body{
+  justify-content: center;
+  display: flex;
+}
 .schedule_body table {
   width: 100%;
   border: 1px solid #444444;
@@ -9,6 +13,8 @@
 }
 .schedule_body th {
   border-top: 1px solid green;
+
+  
 }
 
 .App div {
@@ -18,4 +24,10 @@
 .schedule_body .time,
 .time1 {
   border-right: 1px solid green;
+  border-left: 1px solid green;
+}
+
+.schedule_body .check,
+.check1 {
+  width: 30px;
 }
