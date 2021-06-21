@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-
 const Schedule = () => {
     const [inputs, setInputs] = useState({ name: "", phone: "", count: "" })
     const [time_table, setTime_table] = useState([
@@ -75,7 +74,6 @@ const Schedule = () => {
             }
                 : user))
     }
-    
     return (
         <div className="schedule_body">
             <table>
@@ -102,7 +100,7 @@ const Schedule = () => {
                     }
                 </tbody>
             </table>
-            <div>
+            <div className="input_data">
                 <input name="name" type="text" placeholder="이름" onChange={onChange} value={inputs.name}/>
                 <input name="phone" type="text" placeholder="전화번호" onChange={onChange} value={inputs.phone}/>
                 <input name="count" type="text" placeholder="인원" onChange={onChange} value={inputs.count}/>
