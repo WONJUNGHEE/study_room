@@ -18,8 +18,12 @@ function ClockContainer() {
       document.getElementById(`time${moment().hour()}`) &&
       be_time !== moment().hour()
     ) {
-      document.getElementById(`time${moment().hour()}`).style.background =
-        "red";
+      if (moment().hour() === 0) {
+        document.getElementById("time24").style.background = "red";
+      } else {
+        document.getElementById(`time${moment().hour()}`).style.background =
+          "red";
+      }
       if (document.getElementById(`time${be_time}`)) {
         document.getElementById(`time${be_time}`).style.background = "blue";
         setBe_time(moment().hour());
