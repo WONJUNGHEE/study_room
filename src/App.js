@@ -7,6 +7,10 @@ import ClockContainer from "./components/ClockContainer";
 function App() {
   return (
     <div className="App">
+      <div className="ocean">
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
       <Title>TOP 독서실 Study Room Schedule </Title>
       <Headtimertemp>
         <ClockContainer />

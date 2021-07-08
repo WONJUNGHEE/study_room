@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Inputmodal from "./Modal/Inputmodal";
+import Payer from "./Modal/Payer";
 
 const Schedule = () => {
-  const [inputs, setInputs] = useState({ name: "", phone: "", count: "" });
   const [check, setcheck] = useState(data_init);
-
+  const [inputs, setInputs] = useState({ name: "", phone: "", count: "" });
   function data_init() {
     const data = {
       using: false,
@@ -20,7 +21,6 @@ const Schedule = () => {
       window.localStorage.setItem(`${i}`, JSON.stringify(data));
     }
   }
-
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputs({
@@ -42,7 +42,6 @@ const Schedule = () => {
     }
     setInputs({ name: "", phone: "", count: "" });
   };
-
   const schedule_delete = () => {
     for (let i = 9; i < 25; i++) {
       const sch_data = JSON.parse(window.localStorage.getItem(i));
@@ -110,29 +109,9 @@ const Schedule = () => {
         </thead>
         <tbody>{rendering()}</tbody>
       </table>
-      <div className="input_data">
-        <input
-          name="name"
-          type="text"
-          placeholder="이름"
-          onChange={onChange}
-          value={inputs.name}
-        />
-        <input
-          name="phone"
-          type="text"
-          placeholder="전화번호"
-          onChange={onChange}
-          value={inputs.phone}
-        />
-        <input
-          name="count"
-          type="text"
-          placeholder="인원"
-          onChange={onChange}
-          value={inputs.count}
-        />
-        <button onClick={change_table}>변경</button>
+      <div className="change_button">
+        <Inputmodal onChange={onChange} change_table={change_table} />
+        <Payer />
         <button onClick={schedule_delete}>삭제</button>
       </div>
     </div>
