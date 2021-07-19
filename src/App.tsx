@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Schedule from "./components/Schedule";
-import Weather from "./components/Weather";
-import ClockContainer from "./components/ClockContainer";
+import Schedule from "./components/Schedule/Schedule";
+import Weather from "./components/Schedule/Weather";
+import ClockContainer from "./components/Schedule/ClockContainer";
 
 const App: React.FC = () => {
   return (

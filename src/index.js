@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./components/Schedule.css";
+import "./components/Schedule/Schedule.css";
 
 ReactDOM.render(
   <React.StrictMode>

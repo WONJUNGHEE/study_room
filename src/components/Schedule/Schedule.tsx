@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Inputmodal from "./Modal/Inputmodal";
-import Payer from "./Modal/Payer";
+import React, { useState } from "react";
+import Inputmodal from "../Modal/Inputmodal";
+import Payer from "../Modal/Payer";
 
 const Schedule = () => {
   interface sch {
@@ -10,8 +10,9 @@ const Schedule = () => {
     count: String;
     time?: String;
   }
-  const [check, setcheck] = useState(data_init);
+  data_init();
   const [inputs, setInputs] = useState({ name: "", phone: "", count: "" });
+  const [check, setCheck] = useState<Boolean>(true);
   function data_init() {
     const data: sch = {
       using: false,
@@ -85,9 +86,15 @@ const Schedule = () => {
     } else {
       return;
     }
+
     time_use.using === false
       ? (time_use.using = true)
       : (time_use.using = false);
+    if (check) {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
     window.localStorage.setItem(e.target.id, JSON.stringify(time_use));
   };
 
@@ -122,9 +129,6 @@ const Schedule = () => {
     return result;
   };
 
-  useEffect(() => {
-    data_init();
-  }, []);
   return (
     <div className="schedule_body">
       <table>
