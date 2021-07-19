@@ -1,9 +1,23 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import React from "react";
+
 import axios from "axios";
 
 //32f4e1ebe302c6c3721c8c07d8065150 api 키
+
+interface weatherdata {
+  temp: number;
+  humidity: number;
+  weather: string;
+  weather_desription: string;
+  weather_icon: string;
+  wind_speed: string;
+  city_name: string;
+  clouds: string;
+}
+
 function Weather() {
-  const [Data, setData] = useState({
+  const [Data, setData] = useState<weatherdata>({
     temp: 0,
     humidity: 0,
     weather: "",
@@ -13,7 +27,7 @@ function Weather() {
     city_name: "",
     clouds: "",
   });
-  function weather_data() {
+  function weather_data(): any {
     return axios
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=32f4e1ebe302c6c3721c8c07d8065150"

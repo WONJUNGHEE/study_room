@@ -4,7 +4,7 @@ import Schedule from "./components/Schedule";
 import Weather from "./components/Weather";
 import ClockContainer from "./components/ClockContainer";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       <div className="ocean">
@@ -19,7 +19,7 @@ function App() {
       <Schedule />
     </div>
   );
-}
+};
 
 const Headtimertemp = styled.div`
   display: flex;

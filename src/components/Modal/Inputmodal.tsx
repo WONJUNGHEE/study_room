@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 
-function Inputmodal(props) {
+function Inputmodal(props: any) {
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -11,6 +11,7 @@ function Inputmodal(props) {
   };
   const closeModal = () => {
     setModalOpen(false);
+    change_table();
   };
 
   return (
@@ -36,7 +37,7 @@ function Inputmodal(props) {
             placeholder="인원"
             onChange={onChange}
           />
-          <button onClick={(change_table, closeModal)}>변경</button>
+          <button onClick={closeModal}>변경</button>
         </div>
       </Modal>
     </React.Fragment>

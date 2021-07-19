@@ -2,30 +2,41 @@ import React, { useState, useEffect, useRef } from "react";
 import moment from "moment";
 import styled from "styled-components";
 function ClockContainer() {
-  let timer = useRef(1);
+  const timer: { current: NodeJS.Timeout | null } = useRef(null);
   const [be_time, setBe_time] = useState(9);
   const [time, setTime] = useState(moment());
   useEffect(() => {
-    timer.current = setInterval(() => {
+    const id = setInterval(() => {
       setTime(moment());
       if (
         document.getElementById(`time${moment().hour()}`) &&
         be_time !== moment().hour()
       ) {
         if (moment().hour() === 0) {
-          document.getElementById("time24").style.background = "red";
+          const timecur: HTMLElement | null = document.getElementById("time24");
+          if (timecur !== null) {
+            timecur.style.background = "red";
+          }
         } else {
-          document.getElementById(`time${moment().hour()}`).style.background =
-            "cadetblue";
+          const timeb: HTMLElement | null = document.getElementById(
+            `time${moment().hour()}`
+          );
+          if (timeb !== null) {
+            timeb.style.background = "cadetblue";
+          }
         }
-        if (document.getElementById(`time${be_time}`)) {
-          document.getElementById(`time${be_time}`).style.background = "white";
+        const settime: HTMLElement | null = document.getElementById(
+          `time${be_time}`
+        );
+        if (settime) {
+          settime.style.background = "white";
           setBe_time(moment().hour());
         }
       }
     }, 1000);
+    timer.current = id;
     return () => {
-      clearInterval(timer.current);
+      clearInterval(timer.current as NodeJS.Timeout);
     };
   }, [be_time]);
   return (

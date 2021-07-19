@@ -1,7 +1,7 @@
 import React from "react";
 import "./modal.css";
 
-function Modal(props) {
+function Modal(props: any) {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header } = props;
 
