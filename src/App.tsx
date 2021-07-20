@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Schedule from "./components/Schedule/Schedule";
 import Weather from "./components/Schedule/Weather";
 import ClockContainer from "./components/Schedule/ClockContainer";
-
+import Login from "./components/login/Login";
 const App: React.FC = () => {
   return (
     <div className="App">
@@ -18,6 +18,7 @@ const App: React.FC = () => {
       </Headtimertemp>
       <Schedule />
     </div>
+    // <Login />
   );
 };
 
