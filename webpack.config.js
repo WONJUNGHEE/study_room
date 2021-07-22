@@ -1,18 +1,18 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
-
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 module.exports = {
-  entry: { app: "./src/index.js" },
+  entry: { app: "./src/index.tsx" },
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname + "/build"),
   },
   devServer: {
-    host: "localhost",
-    port: port,
-    open: true, // open page when start
+    contentBase: path.resolve("./build"),
+    index: "index.html",
+    port: PORT,
+    historyApiFallback: true,
   },
   mode: "development",
   optimization: {

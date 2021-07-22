@@ -22,7 +22,7 @@ const Schedule = () => {
     };
     //새로고침이후 데이터 유지하기 위해
     if (window.localStorage.getItem("10") !== null) {
-      return console.log("이미 데이터가 존재 합니다.");
+      return;
     }
     for (let i = 9; i < 25; i++) {
       data["time"] = `${i}`;
