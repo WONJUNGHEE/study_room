@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import { useState, useEffect } from 'react';
+import React from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
 //32f4e1ebe302c6c3721c8c07d8065150 api 키
 
@@ -20,17 +20,17 @@ function Weather() {
   const [Data, setData] = useState<weatherdata>({
     temp: 0,
     humidity: 0,
-    weather: "",
-    weather_desription: "",
-    weather_icon: "",
-    wind_speed: "",
-    city_name: "",
-    clouds: "",
+    weather: '',
+    weather_desription: '',
+    weather_icon: '',
+    wind_speed: '',
+    city_name: '',
+    clouds: '',
   });
   function weather_data(): any {
     return axios
       .get(
-        "https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=32f4e1ebe302c6c3721c8c07d8065150"
+        'https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=32f4e1ebe302c6c3721c8c07d8065150',
       )
       .then((response) =>
         setData({
@@ -42,7 +42,7 @@ function Weather() {
           wind_speed: response.data.wind.speed,
           city_name: response.data.name,
           clouds: response.data.clouds.all,
-        })
+        }),
       )
       .catch((error) => console.log(error));
   }
@@ -53,7 +53,6 @@ function Weather() {
     setInterval(() => {
       weather_data();
     }, 1800000);
-    return () => {};
   }, []);
   return (
     <div>
