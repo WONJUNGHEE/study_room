@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-function Login() {
-  const [inputId, setInputId] = useState<string>("");
-  const [inputPw, setInputPw] = useState<string>("");
+function Login(): JSX.Element {
+  const [inputId, setInputId] = useState<string>('');
+  const [inputPw, setInputPw] = useState<string>('');
   const history = useHistory();
   const handleInputId = (e: any) => {
     setInputId(e.target.value);
@@ -15,13 +15,13 @@ function Login() {
   const onClickLogin = () => {
     if (sessionStorage.getItem(inputId)) {
       if (sessionStorage.getItem(inputId) === inputPw) {
-        alert("로그인 성공");
-        history.push("/schedule");
+        alert('로그인 성공');
+        history.push('/schedule');
       } else {
-        alert("비밀번호가 틀렸습니다.");
+        alert('비밀번호가 틀렸습니다.');
       }
     } else {
-      alert("없는 아이디입니다.");
+      alert('없는 아이디입니다.');
     }
   };
 
