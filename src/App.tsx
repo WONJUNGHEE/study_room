@@ -5,8 +5,10 @@ import LoginMain from "./components/login/LoginMain";
 const App: React.FC = () => {
   return (
     <div>
+
       <Route exact path="/study_room" component={LoginMain} />
       <Route path="/study_room/schedule" component={Schedule_main} />
+
     </div>
   );
 };
