@@ -16,7 +16,7 @@ function Login(): JSX.Element {
     if (sessionStorage.getItem(inputId)) {
       if (sessionStorage.getItem(inputId) === inputPw) {
         alert('로그인 성공');
-        history.push('/schedule');
+        history.push('/study_room/schedule');
       } else {
         alert('비밀번호가 틀렸습니다.');
       }
@@ -27,7 +27,7 @@ function Login(): JSX.Element {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>TOP 독서실 로그인</h2>
       <form className="login-form">
         <div className="field">
           <input
@@ -50,10 +50,13 @@ function Login(): JSX.Element {
             onChange={handleInputPw}
           />
           <label htmlFor="input_pw">비밀번호를 입력하세요.</label>
-
-          <button onClick={onClickLogin}>Login</button>
         </div>
       </form>
+      <div className="field">
+        <button className="login-button" onClick={onClickLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }

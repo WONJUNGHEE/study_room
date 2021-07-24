@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Modal from "./Modal";
+import React, { useState } from 'react';
+import Modal from '../Modal/Modal';
 
 function Inputmodal(props: any) {
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)

@@ -33,8 +33,15 @@ function Signup() {
   };
   return (
     <div className="field">
-      <button onClick={openModal}>회원가입</button>
-      <Modal open={ModalOpen} close={closeModal} header="회원가입">
+      <button className="login-button" onClick={openModal}>
+        회원가입
+      </button>
+      <Modal
+        open={ModalOpen}
+        className="login-button"
+        close={closeModal}
+        header="회원가입"
+      >
         <div className="input_data">
           <div className="field">
             <input

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Inputmodal from '../Modal/Inputmodal';
-import Payer from '../Modal/Payer';
+import Inputmodal from './Inputmodal';
+import Notice from './Notice';
 
 const Schedule = () => {
   interface sch {
@@ -81,7 +81,7 @@ const Schedule = () => {
   const handlechange = (e: any) => {
     const a = window.localStorage.getItem(e.target.id);
     let time_use: sch;
-    if (a != null) {
+    if (a !== null) {
       time_use = JSON.parse(a);
     } else {
       return;
@@ -144,7 +144,7 @@ const Schedule = () => {
       </table>
       <div className="change_button">
         <Inputmodal onChange={onChange} change_table={change_table} />
-        <Payer />
+        <Notice />
         <button onClick={schedule_delete}>삭제</button>
       </div>
     </div>

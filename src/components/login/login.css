@@ -1,7 +1,10 @@
-button {
-  display: flex;
-  justify-content: space-around;
+div {
+  text-align: center;
+}
+
+.login-button {
   margin-top: 15px;
+  width: 50%;
 }
 .signinput {
   padding: 9px 0px 7px 9px;
@@ -58,11 +61,11 @@ input::placeholder {
   color: transparent;
 }
 
-input:not(:placeholder-shown) + label {
+.login_input:not(:placeholder-shown) + label {
   transform: translateY(0);
   font-size: 11px;
 }
-input:not(:placeholder-shown) {
+.login_input:not(:placeholder-shown) {
   padding-top: 14px;
   padding-bottom: 2px;
 }

@@ -1,7 +1,8 @@
-import React from "react";
-import Login from "./Login";
-import Signup from "./Signup";
-import "./login.css";
+import React from 'react';
+import Login from './Login';
+import styled from 'styled-components';
+import Signup from './Signup';
+import './login.css';
 
 function LoginMain() {
   return (
