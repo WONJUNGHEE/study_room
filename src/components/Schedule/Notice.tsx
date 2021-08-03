@@ -16,14 +16,13 @@ const Notice = () => {
   };
   const closeModal = () => {
     setModalOpen(false);
-    localStorage.setItem('notice', JSON.stringify(noticelist));
+    setInputnotice('');
   };
   const inputchange = (e: any) => {
     setInputnotice(e.target.value);
   };
 
   const list_add = () => {
-    const list = localStorage.getItem('notice');
     if (inputnotice !== '') {
       if (noticelist !== null) {
         setNoticelist([...noticelist, inputnotice]);
@@ -39,7 +38,8 @@ const Notice = () => {
     }
   };
   const delete_button = (e: any) => {
-    setNoticelist(noticelist.splice(e.target.value, 1));
+    noticelist.splice(e.target.value, 1);
+    setNoticelist([...noticelist]);
     localStorage.setItem('notice', JSON.stringify(noticelist));
   };
   const listrendering = () => {
@@ -55,8 +55,12 @@ const Notice = () => {
         result.push(
           <div key={index}>
             {data}{' '}
-            <button value={index} onClick={delete_button}>
-              x
+            <button
+              className="notice_btn"
+              value={index}
+              onClick={delete_button}
+            >
+              X
             </button>
           </div>,
         );
@@ -76,7 +80,7 @@ const Notice = () => {
             type="text"
             name="input_notice"
             value={inputnotice}
-            placeholder="아이디"
+            placeholder="전달 사항"
             onChange={inputchange}
           />
           <button onClick={list_add}>추가</button>

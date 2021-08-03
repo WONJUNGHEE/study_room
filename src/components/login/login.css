@@ -54,7 +54,7 @@ label {
   width: 100%;
   text-overflow: ellipsis;
 }
-input::placeholder {
+.login_input::placeholder {
   visibility: hidden;
 }
 .login-form ::-moz-placeholder {

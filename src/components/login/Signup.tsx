@@ -45,7 +45,7 @@ function Signup() {
         <div className="input_data">
           <div className="field">
             <input
-              className="signinput"
+              className="login_input"
               id="username"
               type="name"
               placeholder="아이디"
@@ -55,7 +55,7 @@ function Signup() {
           </div>
           <div className="field">
             <input
-              className="signinput"
+              className="login_input"
               id="password"
               type="password"
               placeholder="비밀번호"
