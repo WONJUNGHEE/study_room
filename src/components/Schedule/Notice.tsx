@@ -49,16 +49,20 @@ const Notice = () => {
     if (list !== null) {
       list_data = JSON.parse(list);
     }
-    list_data.map((data: string, index: number) => {
-      result.push(
-        <div key={index}>
-          {data}{' '}
-          <button value={index} onClick={delete_button}>
-            x
-          </button>
-        </div>,
-      );
-    });
+    for (const index in list_data) {
+      if (Object.prototype.hasOwnProperty.call(list_data, index)) {
+        const data = list_data[index];
+        result.push(
+          <div key={index}>
+            {data}{' '}
+            <button value={index} onClick={delete_button}>
+              x
+            </button>
+          </div>,
+        );
+      }
+    }
+
     return result;
   };
 
