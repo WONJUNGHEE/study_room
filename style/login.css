@@ -1,0 +1,71 @@
+div {
+  text-align: center;
+}
+
+.login-button {
+  margin-top: 15px;
+  width: 50%;
+}
+.signinput {
+  padding: 9px 0px 7px 9px;
+  font-size: 14px;
+  width: 16rem;
+  height: 1.2rem;
+  outline: none;
+  background: #fafafa;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+}
+button {
+  padding: 6px 12px;
+  color: #fff;
+  background-color: cadetblue;
+  border-radius: 5px;
+  font-size: 13px;
+  border: none;
+}
+
+label {
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  padding-bottom: 15px;
+  transform: translateY(10px);
+  line-height: 6px;
+  transition: all ease-out 0.1s;
+  font-size: 14px;
+  color: #999;
+  padding-top: 6px;
+}
+.login_input {
+  padding: 9px 0px 7px 9px;
+  font-size: 14px;
+  width: 16rem;
+  height: 1.2rem;
+  outline: none;
+  background: #fafafa;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+}
+.field {
+  margin: 10px 0;
+  position: relative;
+  font-size: 14px;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+.login_input::placeholder {
+  visibility: hidden;
+}
+.login-form ::-moz-placeholder {
+  color: transparent;
+}
+
+.login_input:not(:placeholder-shown) + label {
+  transform: translateY(0);
+  font-size: 11px;
+}
+.login_input:not(:placeholder-shown) {
+  padding-top: 14px;
+  padding-bottom: 2px;
+}
