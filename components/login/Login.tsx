@@ -2,9 +2,32 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 
 function Login(): JSX.Element {
+  interface sch {
+    using: boolean;
+    name: string;
+    phone: string;
+    count: string;
+    time?: string;
+  }
+
   const [inputId, setInputId] = useState<string>("");
   const [inputPw, setInputPw] = useState<string>("");
-
+  function data_init() {
+    const data: sch = {
+      using: false,
+      name: "",
+      phone: "",
+      count: "",
+    };
+    //새로고침이후 데이터 유지하기 위해
+    if (window.localStorage.getItem("10") !== null) {
+      return;
+    }
+    for (let i = 9; i < 25; i++) {
+      data["time"] = `${i}`;
+      window.localStorage.setItem(`${i}`, JSON.stringify(data));
+    }
+  }
   const handleInputId = (e: any) => {
     setInputId(e.target.value);
   };
@@ -16,6 +39,7 @@ function Login(): JSX.Element {
     if (sessionStorage.getItem(inputId)) {
       if (sessionStorage.getItem(inputId) === inputPw) {
         alert("로그인 성공");
+        data_init();
         Router.push("/Schedule");
       } else {
         alert("비밀번호가 틀렸습니다.");

@@ -1,14 +1,11 @@
 import Link from "next/link";
 import LoginMain from "./LoginMain";
-
-const prefix =
-  process.env.NODE_ENV === "production"
-    ? "https://WONJUNGHEE.github.io/study_room/"
-    : "";
+import { prefix } from "../config/config";
+import { PortfolioProvider } from "../context/context";
 const IndexPage = () => (
-  <>
+  <PortfolioProvider value={{ prefix }}>
     <LoginMain />
-  </>
+  </PortfolioProvider>
 );
 
 export default IndexPage;

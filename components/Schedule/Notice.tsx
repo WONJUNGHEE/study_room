@@ -8,8 +8,12 @@ const Notice = () => {
   const [inputnotice, setInputnotice] = useState<string>("");
 
   const [noticelist, setNoticelist] = useState<string[]>(() => {
-    const init_list = localStorage.getItem("notice");
-    return init_list !== null ? JSON.parse(init_list) : [];
+    if (typeof localStorage !== "undefined") {
+      const init_list = localStorage.getItem("notice");
+      return init_list !== null ? JSON.parse(init_list) : [];
+    } else {
+      return [];
+    }
   });
   const openModal = () => {
     setModalOpen(true);
@@ -48,7 +52,12 @@ const Notice = () => {
   };
   const listrendering = () => {
     const result: any = [];
-    const list = localStorage.getItem("notice");
+    const list: any = null;
+    if (typeof localStorage !== "undefined") {
+      const list: any = localStorage.getItem("notice");
+    } else {
+      const list: any = null;
+    }
     let list_data;
     if (list !== null) {
       list_data = JSON.parse(list);

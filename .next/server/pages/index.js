@@ -4,24 +4,47 @@ exports.id = 405;
 exports.ids = [405,988];
 exports.modules = {
 
-/***/ 562:
+/***/ 198:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(282);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _LoginMain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
 
-
-
-const prefix = (/* unused pure expression or super */ null && ( true ? "https://WONJUNGHEE.github.io/study_room/" : 0));
-
-const IndexPage = () => /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-  children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_LoginMain__WEBPACK_IMPORTED_MODULE_1__.default, {})
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": function() { return /* binding */ pages; }
 });
 
-/* harmony default export */ __webpack_exports__["default"] = (IndexPage);
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(282);
+// EXTERNAL MODULE: ./pages/LoginMain.tsx + 2 modules
+var LoginMain = __webpack_require__(10);
+;// CONCATENATED MODULE: ./config/config.js
+const prefix =  true ? "https://WONJUNGHEE.github.io/study_room/" : 0;
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(297);
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+;// CONCATENATED MODULE: ./context/context.js
+
+const PortfolioContext = /*#__PURE__*/external_react_default().createContext();
+const PortfolioProvider = PortfolioContext.Provider;
+const PortfolioConsumer = PortfolioContext.Consumer;
+/* harmony default export */ var context = ((/* unused pure expression or super */ null && (PortfolioContext)));
+;// CONCATENATED MODULE: ./pages/index.tsx
+
+
+
+
+
+const IndexPage = () => /*#__PURE__*/jsx_runtime_.jsx(PortfolioProvider, {
+  value: {
+    prefix: prefix
+  },
+  children: /*#__PURE__*/jsx_runtime_.jsx(LoginMain.default, {})
+});
+
+/* harmony default export */ var pages = (IndexPage);
 
 /***/ }),
 
@@ -56,7 +79,7 @@ module.exports = require("react/jsx-runtime");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = __webpack_require__.X(0, [867,10], function() { return __webpack_exec__(562); });
+var __webpack_exports__ = __webpack_require__.X(0, [867,10], function() { return __webpack_exec__(198); });
 module.exports = __webpack_exports__;
 
 })();

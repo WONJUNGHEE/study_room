@@ -37,6 +37,24 @@ function Login() {
     1: setInputPw
   } = (0,external_react_.useState)("");
 
+  function data_init() {
+    const data = {
+      using: false,
+      name: "",
+      phone: "",
+      count: ""
+    }; //새로고침이후 데이터 유지하기 위해
+
+    if (window.localStorage.getItem("10") !== null) {
+      return;
+    }
+
+    for (let i = 9; i < 25; i++) {
+      data["time"] = `${i}`;
+      window.localStorage.setItem(`${i}`, JSON.stringify(data));
+    }
+  }
+
   const handleInputId = e => {
     setInputId(e.target.value);
   };
@@ -49,6 +67,7 @@ function Login() {
     if (sessionStorage.getItem(inputId)) {
       if (sessionStorage.getItem(inputId) === inputPw) {
         alert("로그인 성공");
+        data_init();
         router_default().push("/Schedule");
       } else {
         alert("비밀번호가 틀렸습니다.");

@@ -5,6 +5,14 @@
 // import { User } from 'path/to/interfaces';
 
 export type User = {
-  id: number
-  name: string
+  id: number;
+  name: string;
+};
+
+export interface sch {
+  using: boolean;
+  name: string;
+  phone: string;
+  count: string;
+  time?: string;
 }

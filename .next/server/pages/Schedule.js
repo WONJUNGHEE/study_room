@@ -116,8 +116,12 @@ const Notice = () => {
     0: noticelist,
     1: setNoticelist
   } = (0,external_react_.useState)(() => {
-    const init_list = localStorage.getItem("notice");
-    return init_list !== null ? JSON.parse(init_list) : [];
+    if (typeof localStorage !== "undefined") {
+      const init_list = localStorage.getItem("notice");
+      return init_list !== null ? JSON.parse(init_list) : [];
+    } else {
+      return [];
+    }
   });
 
   const openModal = () => {
@@ -161,7 +165,14 @@ const Notice = () => {
 
   const listrendering = () => {
     const result = [];
-    const list = localStorage.getItem("notice");
+    const list = null;
+
+    if (typeof localStorage !== "undefined") {
+      const list = localStorage.getItem("notice");
+    } else {
+      const list = null;
+    }
+
     let list_data;
 
     if (list !== null) {
@@ -227,37 +238,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 const Schedule = () => {
-  data_init();
   const {
     0: inputs,
     1: setInputs
   } = (0,external_react_.useState)({
-    name: '',
-    phone: '',
-    count: ''
+    name: "",
+    phone: "",
+    count: ""
   });
   const {
     0: check,
     1: setCheck
   } = (0,external_react_.useState)(true);
-
-  function data_init() {
-    const data = {
-      using: false,
-      name: '',
-      phone: '',
-      count: ''
-    }; //새로고침이후 데이터 유지하기 위해
-
-    if (window.localStorage.getItem('10') !== null) {
-      return;
-    }
-
-    for (let i = 9; i < 25; i++) {
-      data['time'] = `${i}`;
-      window.localStorage.setItem(`${i}`, JSON.stringify(data));
-    }
-  }
 
   const onChange = e => {
     const {
@@ -281,18 +273,18 @@ const Schedule = () => {
       }
 
       if (sch_data.using === true) {
-        sch_data['using'] = false;
-        sch_data['name'] = inputs.name;
-        sch_data['phone'] = inputs.phone;
-        sch_data['count'] = inputs.count;
+        sch_data["using"] = false;
+        sch_data["name"] = inputs.name;
+        sch_data["phone"] = inputs.phone;
+        sch_data["count"] = inputs.count;
         window.localStorage.setItem(`${i}`, JSON.stringify(sch_data));
       }
     }
 
     setInputs({
-      name: '',
-      phone: '',
-      count: ''
+      name: "",
+      phone: "",
+      count: ""
     });
   };
 
@@ -308,18 +300,18 @@ const Schedule = () => {
       }
 
       if (sch_data.using === true) {
-        sch_data['using'] = false;
-        sch_data['name'] = '';
-        sch_data['phone'] = '';
-        sch_data['count'] = '';
+        sch_data["using"] = false;
+        sch_data["name"] = "";
+        sch_data["phone"] = "";
+        sch_data["count"] = "";
         window.localStorage.setItem(`${i}`, JSON.stringify(sch_data));
       }
     }
 
     setInputs({
-      name: '',
-      phone: '',
-      count: ''
+      name: "",
+      phone: "",
+      count: ""
     });
   };
 
@@ -347,36 +339,7 @@ const Schedule = () => {
   const rendering = () => {
     const result = [];
 
-    for (let i = 9; i < 25; i++) {
-      const a = window.localStorage.getItem(i.toString());
-      let sch_data;
-
-      if (a != null) {
-        sch_data = JSON.parse(a);
-      }
-
-      result.push( /*#__PURE__*/(0,jsx_runtime_.jsxs)("tr", {
-        children: [/*#__PURE__*/jsx_runtime_.jsx("th", {
-          className: "check1",
-          children: /*#__PURE__*/jsx_runtime_.jsx("input", {
-            type: "checkbox",
-            id: sch_data.time,
-            checked: sch_data.using,
-            onChange: handlechange
-          })
-        }), /*#__PURE__*/jsx_runtime_.jsx("th", {
-          className: "time1",
-          id: `time${sch_data.time}`,
-          children: sch_data.time
-        }), /*#__PURE__*/jsx_runtime_.jsx("th", {
-          children: sch_data.name
-        }), /*#__PURE__*/jsx_runtime_.jsx("th", {
-          children: sch_data.phone
-        }), /*#__PURE__*/jsx_runtime_.jsx("th", {
-          children: sch_data.count
-        })]
-      }, sch_data.time));
-    }
+    if (false) {}
 
     return result;
   };
@@ -496,23 +459,23 @@ function ClockContainer() {
 
       if (document.getElementById(`time${external_moment_default()().hour()}`) && be_time !== external_moment_default()().hour()) {
         if (external_moment_default()().hour() === 0) {
-          const timecur = document.getElementById('time24');
+          const timecur = document.getElementById("time24");
 
           if (timecur !== null) {
-            timecur.style.background = 'red';
+            timecur.style.background = "red";
           }
         } else {
           const timeb = document.getElementById(`time${external_moment_default()().hour()}`);
 
           if (timeb !== null) {
-            timeb.style.background = 'cadetblue';
+            timeb.style.background = "cadetblue";
           }
         }
 
         const settime = document.getElementById(`time${be_time}`);
 
         if (settime) {
-          settime.style.background = 'white';
+          settime.style.background = "white";
           setBe_time(external_moment_default()().hour());
         }
       }
@@ -524,9 +487,9 @@ function ClockContainer() {
   }, [be_time]);
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)(TimerArea, {
     children: [/*#__PURE__*/jsx_runtime_.jsx(Area, {
-      children: time.format('YYYY 년 MM 월 DD 일')
+      children: time.format("YYYY 년 MM 월 DD 일")
     }), /*#__PURE__*/jsx_runtime_.jsx(Area, {
-      children: time.format('HH시 mm분 ss초')
+      children: time.format("HH시 mm분 ss초")
     })]
   });
 }
