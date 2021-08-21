@@ -10,6 +10,7 @@ export interface sch {
   count: string;
   time?: string;
 }
+
 export interface login {
   id: string;
 }
