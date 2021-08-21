@@ -21,13 +21,22 @@ var external_react_ = __webpack_require__(297);
 // EXTERNAL MODULE: external "next/router"
 var router_ = __webpack_require__(731);
 var router_default = /*#__PURE__*/__webpack_require__.n(router_);
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__(79);
+// EXTERNAL MODULE: ./reducers/loginReducer.ts
+var loginReducer = __webpack_require__(966);
 ;// CONCATENATED MODULE: ./components/login/Login.tsx
 
 
 
 
 
+
+
 function Login() {
+  const {
+    id
+  } = (0,external_react_redux_.useSelector)(state => state.loginReducer);
   const {
     0: inputId,
     1: setInputId
@@ -36,23 +45,29 @@ function Login() {
     0: inputPw,
     1: setInputPw
   } = (0,external_react_.useState)("");
+  const dispatch = (0,external_react_redux_.useDispatch)();
 
   function data_init() {
-    const data = {
-      using: false,
-      name: "",
-      phone: "",
-      count: ""
-    }; //새로고침이후 데이터 유지하기 위해
-
-    if (window.localStorage.getItem("10") !== null) {
+    // 새로고침이후 데이터 유지하기 위해
+    if (window.localStorage.getItem(`${inputId}`) !== null) {
       return;
     }
 
+    let init = [];
+
     for (let i = 9; i < 25; i++) {
-      data["time"] = `${i}`;
-      window.localStorage.setItem(`${i}`, JSON.stringify(data));
+      const data = {
+        using: false,
+        name: "",
+        phone: "",
+        count: ""
+      };
+      let initdata = data;
+      initdata.time = `${i}`;
+      init.push(initdata);
     }
+
+    window.localStorage.setItem(`${inputId}`, JSON.stringify(init));
   }
 
   const handleInputId = e => {
@@ -67,6 +82,9 @@ function Login() {
     if (sessionStorage.getItem(inputId)) {
       if (sessionStorage.getItem(inputId) === inputPw) {
         alert("로그인 성공");
+        dispatch(loginReducer/* actions.loginStart */.Nw.loginStart({
+          id: inputId
+        }));
         data_init();
         router_default().push("/Schedule");
       } else {
@@ -250,6 +268,48 @@ function LoginMain() {
 }
 
 /* harmony default export */ var pages_LoginMain = (LoginMain);
+
+/***/ }),
+
+/***/ 966:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Nw": function() { return /* binding */ actions; }
+/* harmony export */ });
+/* unused harmony exports LOGIN_START, LOGOUT_START, loginStart, logoutStart */
+/* harmony import */ var typesafe_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(802);
+/* harmony import */ var typesafe_actions__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typesafe_actions__WEBPACK_IMPORTED_MODULE_0__);
+
+// 상태 초기화
+const initialState = {
+  id: ""
+}; // 액션타입 선언
+
+const LOGIN_START = "loginReducer/LOGIN_START";
+const LOGOUT_START = "loginReducer/LOGOUT_START"; // 액션함수 선언
+
+const loginStart = (0,typesafe_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(LOGIN_START)();
+const logoutStart = (0,typesafe_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(LOGOUT_START)(); // 액션 객체타입
+
+const actions = {
+  loginStart,
+  logoutStart
+};
+// 리듀서 추가
+const loginReducer = (0,typesafe_actions__WEBPACK_IMPORTED_MODULE_0__.createReducer)(initialState, {
+  [LOGOUT_START]: () => ({
+    id: ""
+  }),
+  [LOGIN_START]: (state, action) => {
+    console.log(state.id);
+    return {
+      id: action.payload.id
+    };
+  }
+});
+/* harmony default export */ __webpack_exports__["ZP"] = (loginReducer);
 
 /***/ })
 
