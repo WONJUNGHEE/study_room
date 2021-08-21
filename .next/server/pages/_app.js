@@ -26,13 +26,13 @@ var app = __webpack_require__(544);
 var external_react_redux_ = __webpack_require__(79);
 ;// CONCATENATED MODULE: external "redux"
 var external_redux_namespaceObject = require("redux");;
-// EXTERNAL MODULE: ./reducers/testReducer.ts
-var testReducer = __webpack_require__(15);
+// EXTERNAL MODULE: ./reducers/loginReducer.ts
+var loginReducer = __webpack_require__(966);
 ;// CONCATENATED MODULE: ./reducers/index.ts
 
 
 const rootReducer = (0,external_redux_namespaceObject.combineReducers)({
-  testReducer: testReducer/* default */.ZP
+  loginReducer: loginReducer/* default */.ZP
 });
 /* harmony default export */ var reducers = (rootReducer);
 ;// CONCATENATED MODULE: ./reducers/configureStore.ts
@@ -79,6 +79,48 @@ TestApp.getInitialProps = async appContext => {
 };
 
 /* harmony default export */ var _app = (TestApp);
+
+/***/ }),
+
+/***/ 966:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Nw": function() { return /* binding */ actions; }
+/* harmony export */ });
+/* unused harmony exports LOGIN_START, LOGOUT_START, loginStart, logoutStart */
+/* harmony import */ var typesafe_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(802);
+/* harmony import */ var typesafe_actions__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typesafe_actions__WEBPACK_IMPORTED_MODULE_0__);
+
+// 상태 초기화
+const initialState = {
+  id: ""
+}; // 액션타입 선언
+
+const LOGIN_START = "loginReducer/LOGIN_START";
+const LOGOUT_START = "loginReducer/LOGOUT_START"; // 액션함수 선언
+
+const loginStart = (0,typesafe_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(LOGIN_START)();
+const logoutStart = (0,typesafe_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(LOGOUT_START)(); // 액션 객체타입
+
+const actions = {
+  loginStart,
+  logoutStart
+};
+// 리듀서 추가
+const loginReducer = (0,typesafe_actions__WEBPACK_IMPORTED_MODULE_0__.createReducer)(initialState, {
+  [LOGOUT_START]: () => ({
+    id: ""
+  }),
+  [LOGIN_START]: (state, action) => {
+    console.log(state.id);
+    return {
+      id: action.payload.id
+    };
+  }
+});
+/* harmony default export */ __webpack_exports__["ZP"] = (loginReducer);
 
 /***/ }),
 
@@ -129,7 +171,7 @@ module.exports = require("typesafe-actions");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = __webpack_require__.X(0, [544,15], function() { return __webpack_exec__(915); });
+var __webpack_exports__ = __webpack_require__.X(0, [544], function() { return __webpack_exec__(915); });
 module.exports = __webpack_exports__;
 
 })();

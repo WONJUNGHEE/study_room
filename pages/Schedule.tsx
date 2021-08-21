@@ -3,8 +3,11 @@ import styled from "styled-components";
 import Schedule from "../components/Schedule/Schedule";
 import Weather from "../components/Schedule/Weather";
 import ClockContainer from "../components/Schedule/ClockContainer";
+import { useSelector } from "react-redux";
+import { RootState } from "../reducers";
 
 function Schedule_main() {
+  const { id } = useSelector((state: RootState) => state.loginReducer);
   return (
     <div className="App">
       <div className="ocean">
@@ -12,15 +15,20 @@ function Schedule_main() {
         <div className="wave"></div>
       </div>
       <Title>TOP 독서실 Study Room Schedule </Title>
-      <Headtimertemp>
+      <Welcome> 📔 {id} 님 반갑습니다. 📔</Welcome>
+      <HeadTimerTemp>
         <ClockContainer />
         <Weather />
-      </Headtimertemp>
+      </HeadTimerTemp>
       <Schedule />
     </div>
   );
 }
-const Headtimertemp = styled.div`
+const Welcome = styled.div`
+  color: #999;
+  margin-bottom: 10px;
+`;
+const HeadTimerTemp = styled.div`
   display: flex;
   justify-content: space-between;
   width:100%

@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
+import { sch } from "../../interfaces/index";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../reducers";
+import { actions } from "../../reducers/loginReducer";
 
 function Login(): JSX.Element {
-  interface sch {
-    using: boolean;
-    name: string;
-    phone: string;
-    count: string;
-    time?: string;
-  }
-
+  const { id } = useSelector((state: RootState) => state.loginReducer);
   const [inputId, setInputId] = useState<string>("");
   const [inputPw, setInputPw] = useState<string>("");
+
+  const dispatch = useDispatch();
+
   function data_init() {
-    const data: sch = {
-      using: false,
-      name: "",
-      phone: "",
-      count: "",
-    };
-    //새로고침이후 데이터 유지하기 위해
-    if (window.localStorage.getItem("10") !== null) {
+    // 새로고침이후 데이터 유지하기 위해
+    if (window.localStorage.getItem(`${inputId}`) !== null) {
       return;
     }
+    let init = [];
     for (let i = 9; i < 25; i++) {
-      data["time"] = `${i}`;
-      window.localStorage.setItem(`${i}`, JSON.stringify(data));
+      const data: sch = {
+        using: false,
+        name: "",
+        phone: "",
+        count: "",
+      };
+      let initdata = data;
+      initdata.time = `${i}`;
+      init.push(initdata);
     }
+    window.localStorage.setItem(`${inputId}`, JSON.stringify(init));
   }
   const handleInputId = (e: any) => {
     setInputId(e.target.value);
@@ -39,6 +42,7 @@ function Login(): JSX.Element {
     if (sessionStorage.getItem(inputId)) {
       if (sessionStorage.getItem(inputId) === inputPw) {
         alert("로그인 성공");
+        dispatch(actions.loginStart({ id: inputId }));
         data_init();
         Router.push("/Schedule");
       } else {

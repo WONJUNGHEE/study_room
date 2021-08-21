@@ -165,33 +165,8 @@ const Notice = () => {
 
   const listrendering = () => {
     const result = [];
-    const list = null;
 
-    if (typeof localStorage !== "undefined") {
-      const list = localStorage.getItem("notice");
-    } else {
-      const list = null;
-    }
-
-    let list_data;
-
-    if (list !== null) {
-      list_data = JSON.parse(list);
-    }
-
-    for (const index in list_data) {
-      if (Object.prototype.hasOwnProperty.call(list_data, index)) {
-        const data = list_data[index];
-        result.push( /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
-          children: [data, " ", /*#__PURE__*/jsx_runtime_.jsx("button", {
-            className: "notice_btn",
-            value: index,
-            onClick: delete_button,
-            children: "X"
-          })]
-        }, index));
-      }
-    }
+    if (false) {}
 
     return result;
   };
@@ -223,6 +198,11 @@ const Notice = () => {
 };
 
 /* harmony default export */ var Schedule_Notice = (Notice);
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__(79);
+// EXTERNAL MODULE: external "next/router"
+var router_ = __webpack_require__(731);
+var router_default = /*#__PURE__*/__webpack_require__.n(router_);
 ;// CONCATENATED MODULE: ./components/Schedule/Schedule.tsx
 
 
@@ -232,6 +212,8 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -250,6 +232,10 @@ const Schedule = () => {
     0: check,
     1: setCheck
   } = (0,external_react_.useState)(true);
+  const {
+    id
+  } = (0,external_react_redux_.useSelector)(state => state.loginReducer);
+  const dispatch = (0,external_react_redux_.useDispatch)();
 
   const onChange = e => {
     const {
@@ -262,25 +248,25 @@ const Schedule = () => {
   };
 
   const change_table = () => {
-    for (let i = 9; i < 25; i++) {
-      const a = window.localStorage.getItem(i.toString());
-      let sch_data;
+    const load_data = window.localStorage.getItem(`${id}`);
+    let sch_data;
 
-      if (a != null) {
-        sch_data = JSON.parse(a);
-      } else {
-        return;
-      }
+    if (load_data != null) {
+      sch_data = JSON.parse(load_data);
+    } else {
+      return;
+    }
 
-      if (sch_data.using === true) {
-        sch_data["using"] = false;
-        sch_data["name"] = inputs.name;
-        sch_data["phone"] = inputs.phone;
-        sch_data["count"] = inputs.count;
-        window.localStorage.setItem(`${i}`, JSON.stringify(sch_data));
+    for (let i = 0; i < 16; i++) {
+      if (sch_data[i].using === true) {
+        sch_data[i].using = false;
+        sch_data[i].name = inputs.name;
+        sch_data[i].phone = inputs.phone;
+        sch_data[i].count = inputs.count;
       }
     }
 
+    window.localStorage.setItem(`${id}`, JSON.stringify(sch_data));
     setInputs({
       name: "",
       phone: "",
@@ -289,34 +275,11 @@ const Schedule = () => {
   };
 
   const schedule_delete = () => {
-    for (let i = 9; i < 25; i++) {
-      const a = window.localStorage.getItem(i.toString());
-      let sch_data;
-
-      if (a != null) {
-        sch_data = JSON.parse(a);
-      } else {
-        return;
-      }
-
-      if (sch_data.using === true) {
-        sch_data["using"] = false;
-        sch_data["name"] = "";
-        sch_data["phone"] = "";
-        sch_data["count"] = "";
-        window.localStorage.setItem(`${i}`, JSON.stringify(sch_data));
-      }
-    }
-
-    setInputs({
-      name: "",
-      phone: "",
-      count: ""
-    });
+    if (false) {}
   };
 
   const handlechange = e => {
-    const a = window.localStorage.getItem(e.target.id);
+    const a = window.localStorage.getItem(`${id}`);
     let time_use;
 
     if (a !== null) {
@@ -325,7 +288,7 @@ const Schedule = () => {
       return;
     }
 
-    time_use.using === false ? time_use.using = true : time_use.using = false;
+    time_use[e.target.id - 9].using === false ? time_use[e.target.id - 9].using = true : time_use[e.target.id - 9].using = false;
 
     if (check) {
       setCheck(false);
@@ -333,7 +296,7 @@ const Schedule = () => {
       setCheck(true);
     }
 
-    window.localStorage.setItem(e.target.id, JSON.stringify(time_use));
+    window.localStorage.setItem(`${id}`, JSON.stringify(time_use));
   };
 
   const rendering = () => {
@@ -342,6 +305,10 @@ const Schedule = () => {
     if (false) {}
 
     return result;
+  };
+
+  const logout = () => {
+    router_default().push("/LoginMain");
   };
 
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
@@ -374,6 +341,9 @@ const Schedule = () => {
       }), /*#__PURE__*/jsx_runtime_.jsx(Schedule_Notice, {}), /*#__PURE__*/jsx_runtime_.jsx("button", {
         onClick: schedule_delete,
         children: "\uC0AD\uC81C"
+      }), /*#__PURE__*/jsx_runtime_.jsx("button", {
+        onClick: logout,
+        children: "\uB85C\uADF8\uC544\uC6C3"
       })]
     })]
   });
@@ -512,7 +482,11 @@ const Area = (external_styled_components_default()).div`
 
 
 
+
 function Schedule_main() {
+  const {
+    id
+  } = (0,external_react_redux_.useSelector)(state => state.loginReducer);
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
     className: "App",
     children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
@@ -524,13 +498,19 @@ function Schedule_main() {
       })]
     }), /*#__PURE__*/jsx_runtime_.jsx(Title, {
       children: "TOP \uB3C5\uC11C\uC2E4 Study Room Schedule "
-    }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(Headtimertemp, {
+    }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(Welcome, {
+      children: [" \uD83D\uDCD4\xA0", id, " \uB2D8 \uBC18\uAC11\uC2B5\uB2C8\uB2E4. \uD83D\uDCD4"]
+    }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(HeadTimerTemp, {
       children: [/*#__PURE__*/jsx_runtime_.jsx(Schedule_ClockContainer, {}), /*#__PURE__*/jsx_runtime_.jsx(Schedule_Weather, {})]
     }), /*#__PURE__*/jsx_runtime_.jsx(Schedule_Schedule, {})]
   });
 }
 
-const Headtimertemp = (external_styled_components_default()).div`
+const Welcome = (external_styled_components_default()).div`
+  color: #999;
+  margin-bottom: 10px;
+`;
+const HeadTimerTemp = (external_styled_components_default()).div`
   display: flex;
   justify-content: space-between;
   width:100%
@@ -546,11 +526,27 @@ const Title = (external_styled_components_default()).h2`
 
 /***/ }),
 
+/***/ 731:
+/***/ (function(module) {
+
+"use strict";
+module.exports = require("next/router");;
+
+/***/ }),
+
 /***/ 297:
 /***/ (function(module) {
 
 "use strict";
 module.exports = require("react");;
+
+/***/ }),
+
+/***/ 79:
+/***/ (function(module) {
+
+"use strict";
+module.exports = require("react-redux");;
 
 /***/ }),
 

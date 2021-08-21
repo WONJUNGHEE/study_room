@@ -52,34 +52,30 @@ const Notice = () => {
   };
   const listrendering = () => {
     const result: any = [];
-    const list: any = null;
-    if (typeof localStorage !== "undefined") {
-      const list: any = localStorage.getItem("notice");
-    } else {
-      const list: any = null;
-    }
-    let list_data;
-    if (list !== null) {
-      list_data = JSON.parse(list);
-    }
-    for (const index in list_data) {
-      if (Object.prototype.hasOwnProperty.call(list_data, index)) {
-        const data = list_data[index];
-        result.push(
-          <div key={index}>
-            {data}{" "}
-            <button
-              className="notice_btn"
-              value={index}
-              onClick={delete_button}
-            >
-              X
-            </button>
-          </div>
-        );
+    if (typeof window !== "undefined") {
+      const notice_list: any = window.localStorage.getItem("notice");
+      let list_data;
+      if (notice_list !== null) {
+        list_data = JSON.parse(notice_list);
+      }
+      for (const index in list_data) {
+        if (Object.prototype.hasOwnProperty.call(list_data, index)) {
+          const data = list_data[index];
+          result.push(
+            <div key={index}>
+              {data}{" "}
+              <button
+                className="notice_btn"
+                value={index}
+                onClick={delete_button}
+              >
+                X
+              </button>
+            </div>
+          );
+        }
       }
     }
-
     return result;
   };
 

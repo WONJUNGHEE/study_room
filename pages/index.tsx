@@ -1,4 +1,3 @@
-import Link from "next/link";
 import LoginMain from "./LoginMain";
 import { prefix } from "../config/config";
 import { PortfolioProvider } from "../context/context";

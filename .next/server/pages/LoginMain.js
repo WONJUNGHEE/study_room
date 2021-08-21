@@ -20,11 +20,27 @@ module.exports = require("react");;
 
 /***/ }),
 
+/***/ 79:
+/***/ (function(module) {
+
+"use strict";
+module.exports = require("react-redux");;
+
+/***/ }),
+
 /***/ 282:
 /***/ (function(module) {
 
 "use strict";
 module.exports = require("react/jsx-runtime");;
+
+/***/ }),
+
+/***/ 802:
+/***/ (function(module) {
+
+"use strict";
+module.exports = require("typesafe-actions");;
 
 /***/ })
 
